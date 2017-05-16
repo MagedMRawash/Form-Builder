@@ -1,0 +1,30 @@
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {routing, RootComponent} from './routes';
+import {DragulaModule} from 'ng2-dragula'
+import {mainComponent} from './main';
+import {FormComponent} from './components/form/form';
+import {GridComponent} from './components/grid/GridComponent';
+import {InputComponent} from './components/input/InputComponent';
+
+
+// InputMenu
+import {InputMenu} from './components/InputMenu/InputMenu';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    routing,
+    DragulaModule
+  ],
+  declarations: [
+    RootComponent,
+    mainComponent,
+    FormComponent,
+    GridComponent,
+    InputComponent,
+    InputMenu,
+  ],
+  bootstrap: [RootComponent]
+})
+export class AppModule {}

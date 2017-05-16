@@ -1,0 +1,12 @@
+<menu>
+  <div class="row">
+    <h2>{{text}}</h2>
+  </div>
+  <div class="dragula row" [dragula]='"input-bag"' [dragulaOptions]="options" [dragulaModel]='inputs' id="menu">
+    <div  class="col-xs-4 input-icon-menu"  *ngFor="let input of inputs" [attr.input]="input">
+      <i class="fa" [ngClass]="input.icon? input.icon : 'fa-asterisk' " aria-hidden="true"></i>
+      <p>{{input.type}}</p>
+
+    </div>
+  </div>
+</menu>
