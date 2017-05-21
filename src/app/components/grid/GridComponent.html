@@ -1,12 +1,12 @@
 <div class="grid-stack">
-  <div *ngFor="let grid of grids ; let gridindx = index;" class=" grid-stack-item" [attr.data-gs-x]="grid.x" attr.data-gs-y="{{grid.y}}"
-    attr.data-gs-width="{{grid.w}}" attr.data-gs-height="{{grid.h}}" id='{{"grid" + gridindx }}'>
+  <div *ngFor="let grid of grids ; let gridindx = index;" class=" grid-stack-item" [attr.data-gs-x]="grid.x" [attr.data-gs-y]="grid.y"
+    [attr.data-gs-width]="grid.width" attr.data-gs-height="{{grid.height}}" id='{{"grid" + gridindx }}'>
     <div class="dragula" [dragula]='"input-bag"' [dragulaOptions]="options" [dragulaModel]='grid.inputs'>
       <div class="input-grid-container" *ngFor="let input of grid.inputs; let inputindx = index">
 
         <!--<input type="button" value="remove" (click)="grid.inputs.splice(inputindx, 1)">-->
         <i class="fa fa-trash" (click)="grid.inputs.splice(inputindx, 1)" aria-hidden="true"></i>
-
+        <attribute [InputAttrs]="input"> </attribute> 
         <inputComponent [input]="input" class="grid-stack-item-content"></inputComponent>
 
       </div>

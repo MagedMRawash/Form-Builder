@@ -17,8 +17,9 @@ import { GridComponent } from '../grid/GridComponent';
  */
 
 export class FormComponent {
-  
+
   public form: object;
+  // public attrs: object;
 
   constructor() {
     this.form = {
@@ -27,28 +28,34 @@ export class FormComponent {
       , "grids": [{
         "x": 0,
         "y": 0,
-        "w":5,
-        "h": 1.5,
+        "width": 5,
+        "height": 1,
         "inputs": [{
-          "type": "text", 
+          "type": "text",
           "name": "nametest",
-          "label" : "label text "
+          "label": "label text ",
+          "value": "text"
         }]
       }, {
         "x": 5,
         "y": 0,
-        "w": 7,
-        "h": 1,
+        "width": 7,
+        "height": 1,
         "inputs": [{
           "type": "text",
           "name": "nametest",
-          "label" : "label text "
+          "label": "label text "
         }]
       }
       ]
     }
 
-
+  }
+  formData() {
+    console.log(this.form)
+    // this.form["grids"].forEach(element => {
+    //   console.log(element)
+    // });
   }
 
 }
