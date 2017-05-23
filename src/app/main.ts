@@ -5,9 +5,9 @@ import {Component} from '@angular/core';
   template: require('./main.html')
 })
 export class mainComponent {
-  public main: string;
+  public main: object;
 
   constructor() {
-    this.main = 'Hello World!';
+    this.main = {value:'Hello World!',type:'number'};
   }
 }

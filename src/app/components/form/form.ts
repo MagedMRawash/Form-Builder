@@ -29,22 +29,25 @@ export class FormComponent {
         "x": 0,
         "y": 0,
         "width": 5,
-        "height": 1,
+        "height": 2,
         "inputs": [{
           "type": "text",
           "name": "nametest",
           "label": "label text ",
-          "value": "text"
+          "value": "text",
+          "validation":"numeric"
         }]
       }, {
         "x": 5,
         "y": 0,
         "width": 7,
-        "height": 1,
+        "height": 2,
         "inputs": [{
           "type": "text",
           "name": "nametest",
-          "label": "label text "
+          "label": "label text ",
+                    "value": "texttwo",
+
         }]
       }
       ]

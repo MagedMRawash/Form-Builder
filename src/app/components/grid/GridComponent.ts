@@ -1,4 +1,4 @@
-import { Component, EventEmitter, AfterViewInit, OnInit, DoCheck, Input, Output, AfterViewChecked, ElementRef } from '@angular/core';
+import { Component, EventEmitter, AfterViewInit, OnInit, DoCheck, Input, Output, AfterViewChecked, ElementRef, ViewChildren } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 declare var jQuery: any;
@@ -15,6 +15,9 @@ export class GridComponent implements AfterViewInit {
   // dragulaModel: any;
   //  : EventEmitter<Array<any>>
   @Output() gridchanges: EventEmitter<any> = new EventEmitter();
+  @ViewChildren('gridID') gridID;
+
+
   private nativeElement: Node;
 
   public gridAdded: any;
@@ -29,99 +32,6 @@ export class GridComponent implements AfterViewInit {
   }
 
 
-  ngOnInit() {
-    this.gridchanges.emit(this.grids)
-
-    var serializeWidgetMap = function (items) {
-      console.log(items);
-    };
-    let gridObject = jQuery('.grid-stack')
-
-    // Events
-    // added(event, items)
-    gridObject.on('added', function (event, items) {
-      for (var i = 0; i < items.length; i++) {
-        console.log('item added');
-        console.log(items);
-      }
-    })
-      // change(event, items)
-      // Occurs when adding/removing widgets or existing widgets change their position/size
-      .on('change', $.proxy(function (event, items) {
-        // get all grid objects from grid lib. to main form object to update its data (grid data)
-        // serializeWidgetMap(items); // get just the changes of data 
-        let updatedGridstackGrids = gridObject.data('gridstack').grid.nodes
-
-        updatedGridstackGrids.forEach((el, indx) => {
-          // let currUpdatedGridstackGrids =
-
-          delete el._id
-          for (let pro in el) {
-
-            if (typeof this.grids[indx] == "undefined") {
-              this.grids[indx] = {
-                "inputs": [{
-                  "type": "text",
-                  "name": "nametest",
-                  "label": "label text "
-                }]
-              }
-            }
-            this.grids[indx][pro] = el[pro]
-          }
-          debugger
-
-          // el.r = "5"
-        })
-        console.log(this.grids)
-        console.log(updatedGridstackGrids)
-
-        // updatedGridstackGrids.forEach(
-        //   (obj) => {
-        //     console.log(obj)
-        //   }
-        // )
-
-      }, this))
-      // disable(event)
-      .on('disable', function (event) {
-        var grid = event.target;
-      })
-      // dragstart(event, ui)
-      .on('dragstart', function (event, ui) {
-        var grid = this;
-        var element = event.target;
-      })
-      // dragstop(event, ui)
-      .on('dragstop', function (event, ui) {
-        var grid = this;
-        var element = event.target;
-      })
-      // enable(event)
-      .on('enable', function (event) {
-        var grid = event.target;
-      })
-      // removed(event, items)
-      .on('removed', function (event, items) {
-        for (var i = 0; i < items.length; i++) {
-          console.log('item removed');
-          console.log(items[i]);
-        }
-      })
-      // resizestart(event, ui)
-      .on('resizestart', function (event, ui) {
-        var grid = this;
-        var element = event.target;
-        // console.log(event.target);
-
-      })
-      // gsresizestop(event, ui)
-      .on('gsresizestop', function (event, elem) {
-        var newHeight = $(elem).attr('data-gs-height');
-      });
-
-
-  }
 
   createnewGrid(e) {
 
@@ -157,18 +67,25 @@ export class GridComponent implements AfterViewInit {
   }
 
   ngAfterViewChecked() {
-    if (this.gridAdded == "dData") {
-      let container = jQuery(this.dropedData[2])
-      let containerHeight = container["0"].clientHeight
-      console.log(container)
-      console.log(containerHeight)
-      let grid = jQuery('.grid-stack').data('gridstack');
-      console.log(grid.opts.cellHeight + grid.opts.verticalMargin)
-      console.log(Math.ceil(containerHeight / grid.opts.cellHeight + grid.opts.verticalMargin))
-      let cellHeight = Math.ceil(containerHeight / (grid.opts.cellHeight + grid.opts.verticalMargin));
-      grid.update(container.parent(), null, null, null, cellHeight)
+      this.gridID._results.forEach(el => {
+          console.log(el)
+        })
+   
+        
+    // console.log(this.grids);
 
-      this.gridAdded = "false";
+    if (this.gridAdded == "dData") {
+      // let container = jQuery(this.dropedData[2])
+      // let containerHeight = container["0"].clientHeight
+      // console.log(container)
+      // console.log(containerHeight)
+      // let grid = jQuery('.grid-stack').data('gridstack');
+      // console.log(grid.opts.cellHeight + grid.opts.verticalMargin)
+      // console.log(Math.ceil(containerHeight / grid.opts.cellHeight + grid.opts.verticalMargin))
+      // let cellHeight = Math.ceil(containerHeight / (grid.opts.cellHeight + grid.opts.verticalMargin));
+      // grid.update(container.parent(), null, null, null, cellHeight)
+
+      // this.gridAdded = "false";
     }
 
     // to add grid to gridstack object i have to run next code to take new added html tags to grid Object  
@@ -184,16 +101,16 @@ export class GridComponent implements AfterViewInit {
     // this line related to GridComponent put i added it into inputComponent to be sure that all tags are currectlly loaded to view 
     var options = {
       acceptWidgets: true,
-      cellHeight: 60,
-      verticalMargin: 10,
-      alwaysShowResizeHandle: true,
-      removeOnSpill: true
+      cellHeight: 60
+      , verticalMargin: 10
+      , alwaysShowResizeHandle: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      , removeOnSpill: true,
     };
 
 
     let gridObject = jQuery('.grid-stack')
-    gridObject.gridstack(options)
-      ;
+    // gridObject.gridstack(options);
+    console.log(this.gridID);
 
   }
 

@@ -26,14 +26,15 @@ export class InputComponent implements OnInit {
 
     // console.log( _elRef.nativeElement)
     // console.log( renderer )
-
-
+ 
   }
 
   removeEl(g)
   { console.log(g) }
   
   ngOnInit() {
+    console.log("INPUT",this.input) 
+    // this.elem=
     // console.log(this.inputs)
   }
 

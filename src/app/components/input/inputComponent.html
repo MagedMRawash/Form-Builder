@@ -1,7 +1,8 @@
 
 <div class="form-group"  *ngIf="input.type != 'textarea' && input.type != 'select'">
         <label for="email">{{input.label}}</label>
-        <input  [type]="input.type" [name]="input.name" [value]="input.value?input.value : ''" class="form-control" [id]="input.id"> 
+        <input  [type]="input.type" [(ngModel)]="input" [name]="input.name" [value]="input.value?input.value : ''" class="form-control" [id]="input.id"> 
+        {(input | json)}
 </div>
 
 <!--add select + textarea to component -->

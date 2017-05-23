@@ -36,7 +36,7 @@ export class Attribute {
     // console.log(this.AttArray)
     // console.log(self.AttArray)
     for (let i in this.AttArray) {
-      this.InputAttrs[this.AttArray[i].label] = this.AttArray[i].value;
+      // this.InputAttrs[this.AttArray[i].label] = this.AttArray[i].value;
     }
   }
 
