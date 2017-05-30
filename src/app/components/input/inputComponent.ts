@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, ElementRef, Renderer } from '@angular/core';
+import { Component, Input, Output, DoCheck, OnInit, OnChanges, ElementRef, Renderer, AfterViewChecked, EventEmitter } from '@angular/core';
 
+declare let _: any;
 @Component({
   selector: 'inputComponent',
   template: require('./inputComponent.html')
@@ -12,30 +13,30 @@ import { Component, Input, OnInit, ElementRef, Renderer } from '@angular/core';
  * @class InputComponent
  * @implements {OnInit}
  */
-export class InputComponent implements OnInit {
+export class InputComponent  {
   private nativeElement: Node;
+  private oldInputValue: any;
 
-  @Input() input: any;
+  @Input() inputObj: any;
+  @Output() InputChanges: EventEmitter<any> = new EventEmitter<any>();
 
   /**
   * @function {InputComponent constructor }
   * @param  {this} private _elRef: ElementRef { equaly to this element }
   * @return {class} {InputComponent class}
   */
-  constructor(private renderer: Renderer, private _elRef: ElementRef) {
-
-    // console.log( _elRef.nativeElement)
-    // console.log( renderer )
- 
+  constructor(  private _elRef: ElementRef) {
+  
   }
 
   removeEl(g)
   { console.log(g) }
-  
-  ngOnInit() {
-    console.log("INPUT",this.input) 
-    // this.elem=
-    // console.log(this.inputs)
-  }
 
+  
+  ngDoCheck() {
+    if (!(_.isEqual(this.inputObj, this.oldInputValue))) {
+      this.InputChanges.emit(this.inputObj)
+      this.oldInputValue = Object.assign({}, this.inputObj)
+    }
+  }
 }

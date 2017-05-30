@@ -1,8 +1,7 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  edit
+  edit        
 </button>
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -13,7 +12,7 @@
       </div>
       <div class="modal-body">
         <div class="input-grid-container" *ngFor="let inputAttr of AttArray; let inputindx = index">
-          <inputComponent [input]="inputAttr" class="grid-stack-item-content"></inputComponent>
+          <inputComponent [inputObj]="inputAttr" (InputChanges)="AttrChanges($event)" class="grid-stack-item-content"></inputComponent>
         </div>
       </div>
       <div class="modal-footer">

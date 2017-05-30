@@ -1,4 +1,6 @@
-<form [method]="form.method" [action]="form.action" class=" row" (click)="formData()" >
-  <gridComponent [(grids)]="form.grids" class="col-xs-12"></gridComponent>
+<form [method]="form.method" [action]="form.action" class=" row"  >
+  <gridComponent [(grids)]="form.rows" class="col-xs-12"></gridComponent>
 </form>
 
+<pre>{{form.rows | json}}</pre>
+<input type="button"   (click)="formData()" >

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 @Component({
   selector: 'inputMenu',
@@ -9,7 +10,8 @@ export class InputMenu {
   public text: string;
   public options: any;
   public inputs: any;
-
+  public gridsData: any;
+  public gridsOptions: any;
 
   // public $: any;
   /**
@@ -17,24 +19,40 @@ export class InputMenu {
    * from this component you can mange menu of all availabole inputs 
    * @memberof InputMenu
    */
-  constructor() {
+  constructor(private dragulaService: DragulaService) {
+    // NodeList.prototype.forEach = Array.prototype.forEach;
+
     this.text = "Input Menu";
     this.options = {
       copy: function (el, source) {
-        return source === document.querySelector('#menu')
+        let result = false;
+        let allData = document.querySelectorAll('#inputMenu, #colMenu')
+        for (let index = 0; index < allData.length; index++) {
+          if (source === allData[index]) {
+            result = true
+          }
+        }
+        return result
       },
       accepts: function (el, target) {
-        return target !== document.querySelector('#menu')
+        let result = false;
+        let allData = document.querySelectorAll('#inputMenu, #colMenu')
+        for (let index = 0; index < allData.length; index++) {
+          // console.log(target !== allData[index]);
+          if (target === allData[index]) {
+            result = true
+          }
+        }
+        return !result
       },
       revertOnSpill: true,
     }
 
-
-    /**
-     * this var "input" is the main container of all inputs to be showen in 
-     * menu as icon 
-     * required data is [type , icon ] in menu .. you get it just in menu 
-     */
+        /**
+        * this var "input" is the main container of all inputs to be showen in 
+        * menu as icon 
+        * required data is [type , icon ] in menu .. you get it just in menu 
+        */
     this.inputs = [{
       "type": "text",
       "name": "nametest",
@@ -65,11 +83,11 @@ export class InputMenu {
       "icon": "fa-circle"
     }, {
       "type": "button",
-      "value" : "button"
+      "value": "button"
       // "icon": "fa-button"
     }, {
       "type": "submit",
-      "value" : "submit"
+      "value": "submit"
       // "icon": "fa-submit"
     },
     {
@@ -93,12 +111,35 @@ export class InputMenu {
       "type": "select",
       "icon": "fa-select",
       "options": ["one", "two", "three"],
-      "selected" : 1
+      "selected": 1
     },
     {
       "type": "textarea",
       "icon": "fa-align-left"
     }]
 
+
+
+
+    this.gridsData = [{
+      "classes": [
+        "col-md-12",
+        "col-xs-12"
+      ],
+      "inputs": [
+        {
+          "type": "text",
+          "name": "nametest",
+          "label": "label text ",
+          "value": "text",
+          "validation": "numeric"
+        }
+      ]
+    }]
+
+    //        this.inputs.map(item=>{
+    //   item.inputs= []
+    //   return item 
+    // })
   }
 }

@@ -7,6 +7,7 @@ body {
   background: #eae7d8;
   .dragula {
     height: auto;
+    min-height: 30px;
     width: 90%;
     margin: 0 auto;
     float: none;
@@ -28,13 +29,13 @@ body {
 }
 
 inputcomponent {
- textarea , button {
+  textarea,
+  button {
     width: 100%;
   }
 }
 
 
-.grid-stack-item .dragula {
-    height: 150px;
-    width: 200px !important;
+.grid-stack>.grid-stack-item>.grid-stack-item-content {
+  z-index: auto !important;
 }

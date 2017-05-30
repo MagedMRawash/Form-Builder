@@ -1,32 +1,33 @@
-
-<div class="form-group"  *ngIf="input.type != 'textarea' && input.type != 'select'">
-        <label for="email">{{input.label}}</label>
-        <input  [type]="input.type" [(ngModel)]="input" [name]="input.name" [value]="input.value?input.value : ''" class="form-control" [id]="input.id"> 
-        {(input | json)}
+<div class="form-group" *ngIf="inputObj.type != 'textarea' && inputObj.type != 'select'">
+  <label for="email">{{inputObj.label}}</label>
+  <input [type]="inputObj.type" [(ngModel)]="inputObj.value" [name]="inputObj.name" [value]="inputObj.value?inputObj.value : ''"
+    class="form-control" [id]="inputObj.id">
+  <!--{{ inputObj | json }}-->
 </div>
 
 <!--add select + textarea to component -->
- <!--*ngIf="input.type == 'select'"-->
-<div class="form-group" *ngIf="input.type == ('select')">
+<!--*ngIf="inputObj.type == 'select'"-->
+<div class="form-group" *ngIf="inputObj.type == ('select')">
 
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="input.id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="inputObj.id" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="true">
 
-{{input.options[input.selected]}}
+{{inputObj.options[inputObj.selected]}}
 
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li *ngFor="let option of input.options, let indx = index" (click)="input.selected=indx" ><a href="#"> {{option}}</a></li>
-  </ul>
-</div>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li *ngFor="let option of inputObj.options, let indx = index" (click)="inputObj.selected=indx"><a href="#"> {{option}}</a></li>
+    </ul>
+  </div>
 
 
 </div>
 
-<div class="form-group" *ngIf="input.type == ('textarea')" >
-<textarea name="input.name"  >
-{{input.text}}
+<div class="form-group" *ngIf="inputObj.type == ('textarea')">
+  <textarea name="inputObj.name">
+{{inputObj.text}}
 </textarea>
 
 </div>
