@@ -2,14 +2,21 @@
   <div class="row">
     <h2>{{text}}</h2>
   </div>
-  <div class="dragula row" [dragula]='"col-bag"' [dragulaOptions]="options" [dragulaModel]='gridsData' id="colMenu">
-    <div  class="col-xs-4 input-icon-menu"  *ngFor="let gridType of gridsData" [attr.input]="gridType">
-      <i class="fa" [ngClass]="'fa-asterisk' " aria-hidden="true"></i>
-      <p>{{gridType.classes}}</p>
+  <div class="dragula row" [dragula]='"row-bag"' [dragulaOptions]="options"  [dragulaModel]='rowsData'  id="rowMenu">
+    <div class="col-xs-12 input-icon-menu"  [attr.input]="rowsData">
+      <i class="fa" [ngClass]="'fa-align-justify'" aria-hidden="true"></i>
+      <p>Row</p>
     </div>
   </div>
+  <div class="dragula row" [dragula]='"col-bag"' [dragulaOptions]="options" [dragulaModel]='gridsData' id="colMenu">
+    <div class="col-xs-12 input-icon-menu" *ngFor="let gridType of gridsData" [attr.input]="gridType">
+      <i class="fa" [ngClass]="'fa-th' " aria-hidden="true"></i>
+      <p>Column</p> 
+    </div> 
+  </div>
+  <hr>
   <div class="dragula row" [dragula]='"input-bag"' [dragulaOptions]="options" [dragulaModel]='inputs' id="inputMenu">
-    <div  class="col-xs-4 input-icon-menu"  *ngFor="let input of inputs" [attr.input]="input">
+    <div class="col-xs-4 input-icon-menu" *ngFor="let input of inputs" [attr.input]="input">
       <i class="fa" [ngClass]="input.icon? input.icon : 'fa-asterisk' " aria-hidden="true"></i>
       <p>{{input.type}}</p>
     </div>

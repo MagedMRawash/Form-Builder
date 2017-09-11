@@ -1,16 +1,18 @@
-<div class="dragula dragRow" [dragula]='"row-bag"'>
-  <div class="repeatRow" *ngFor="let row of rows">
+
+<div class="dragula dragRow" [dragula]='"row-bag"'  [dragulaModel]='rows'  >
+  <div class="repeatRow row" #gridRowRef *ngFor="let row of rows">
+    <!--<pre>{{ row | json }}</pre>--> 
     <div class="control-buttons controlRow">
       <i class="fa fa-arrows-alt row-handle" aria-hidden="true"></i>
       <!--<i class="fa fa-trash" (click)="removeWidget('grid' + gridindx, gridindx )" aria-hidden="true"></i>-->
     </div>
-    <div class="dragula dragCol" [dragula]='"col-bag"' [dragulaOptions]="colOption"  [dragulaModel]='row'>
-      <div class="repeatCol" *ngFor="let col of row ; let colIndx = index" [ngClass]="col.classes" #gridID id='{{"grid" + colIndx }}'>
+    <div class="dragula dragCol" [dragula]='"col-bag"' [dragulaOptions]="colOption" [dragulaModel]='row'>
+      <div class="repeatCol" *ngFor="let col of row ; let colIndx = index" [ngClass]="col.classes.md.name + col.classes.md.num" #gridColRef id='{{"grid" + colIndx }}'>
         <div class="control-buttons controlCol">
           <i class="fa fa-arrows-alt col-handle" aria-hidden="true"></i>
           <!--<i class="fa fa-trash" (click)="removeWidget('grid' + gridindx, gridindx )" aria-hidden="true"></i>-->
         </div>
-        <div class="dragula dragInput" [dragula]='"input-bag"' [dragulaModel]='col.inputs'>
+        <div class="dragula row dragInput" [dragula]='"input-bag"' [dragulaModel]='col.inputs'>
           <div class="repeatInput col-xs-12" *ngFor="let input of col.inputs; let inputindx = index">
             <div class="control-buttons controlInput">
               <i class="fa fa-trash" (click)="col.inputs.splice(inputindx, 1)" aria-hidden="true"></i>
@@ -21,6 +23,9 @@
 
           </div>
         </div>
+
+        <i class="fa fa-arrows-h"  draggable="true"  (dragstart)="StartDragToResize(gridColRef,gridRowRef)"  (dragend)="endDragToResize(col, gridColRef, gridRowRef)"  (drag)="DragToResize( gridColRef, gridRowRef)" aria-hidden="true"></i>
+
       </div>
     </div>
   </div>

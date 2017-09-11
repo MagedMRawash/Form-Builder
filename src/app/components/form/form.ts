@@ -23,59 +23,77 @@ export class FormComponent {
 
   constructor() {
     this.form = {
-  "action": "page.html",
-  "method": "post",
-  "rows": [
-    [
-      {
-        "classes": [
-          "col-md-12",
-          "col-xs-12"
-        ],
-        "inputs": [
+      "action": "page.html",
+      "method": "post",
+      "rows": [
+        [
           {
-            "type": "text",
-            "name": "nametest",
-            "label": "label text ",
-            "value": "text",
-            "validation": "numeric"
+            "classes": {
+              "md": {
+                "name": "col-md-",
+                "num": 12
+              },
+              "xs": {
+                "name": "col-xs-",
+                "num": 12
+              }
+            },
+            "inputs": [
+              {
+                "type": "text",
+                "name": "nametest",
+                "label": "label text ",
+                "value": "text",
+                "validation": "numeric"
+              }
+            ]
+          },
+          {
+            "classes": {
+              "md": {
+                "name": "col-md-",
+                "num": 12
+              },
+              "xs": {
+                "name": "col-xs-",
+                "num": 12
+              }
+            },
+            "inputs": [
+              {
+                "type": "text",
+                "name": "nametest",
+                "label": "label text ",
+                "value": "text",
+                "validation": "numeric"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "classes": {
+               "md": {
+                "name": "col-md-",
+                "num": 12
+              },
+              "xs": {
+                "name": "col-xs-",
+                "num": 12
+              }
+            },
+            "inputs": [
+              {
+                "type": "text",
+                "name": "nametest",
+                "label": "label text ",
+                "value": "texttwo"
+              }
+            ]
           }
         ]
-      },
-      {
-        "classes": [
-          "col-md-12",
-          "col-xs-12"
-        ],
-        "inputs": [
-          {
-            "type": "text",
-            "name": "nametest",
-            "label": "label text ",
-            "value": "text",
-            "validation": "numeric"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "classes": [
-          "col-md-12",
-          "col-xs-12"
-        ],
-        "inputs": [
-          {
-            "type": "text",
-            "name": "nametest",
-            "label": "label text ",
-            "value": "texttwo"
-          }
-        ]
-      }
-    ]
-  ]
-}
+      ]
+    }
 
   }
   formData() {
